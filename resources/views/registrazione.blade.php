@@ -62,7 +62,9 @@
                             </div>
                             <p><label><input type='radio' name='genere' value='m'> Maschio</label></p>
                             <p><label><input type='radio' name='genere' value='f'> Femmina</label></p>
-                            
+                            @if(isset($errore))
+                            <p class="errore">{{$errore}}</p>
+                            @endif
                             <p><label>&nbsp<input type='submit' class='submit' name='invio' value='registrati'></label></p>
                         </form>
                 </div>

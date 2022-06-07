@@ -8,21 +8,20 @@ use Illuminate\Support\Facades\Session;
 
 class RegController extends Controller {
 
-    public function registrazione(){ //VEDI SE VA BENE
+    public function registrazione(){
         //se sono già loggata va ad account
         if(session('username') != null) {
             return redirect('account');
         }
         else {
             return view('registrazione');
-            //->with('csrf_token', csrf_token()); //vedi questa parte del csrf forse non serve in questo caso
         }
     }
 
     protected function insert(){
         $request=request();
         //prima vedo se c'è qualche errore
-        if($this->checkErrors($request) != true){ //SISTEMA PERCHE GLI DEVI PASSARE I DATI
+        if($this->checkErrors($request) != true){
 
             $newIscritto =  Iscritto::create([
                 'username' => $request['username'],
@@ -31,19 +30,18 @@ class RegController extends Controller {
                 'cognome' => $request['cognome'],
                 'email' => $request['email'],
                 'eta' => $request['eta'],
-                'genere' => $request['genere'], //non so se  ci vuole veramente la ','
+                'genere' => $request['genere'],
                 ]);
 
-                if ($newIscritto) { //la voglio fare solo nel login
-                    //Session::put('username', $newUser->username);
+                if ($newIscritto) { 
                     return redirect('login');
                 }
                 else {
-                    return redirect('registrazione');
+                    return view('registrazione')->with(['errore'=>"Controlla bene i campi"]);
                 }
         }
         else 
-            return redirect('registrazione');
+            return view('registrazione')->with(['errore'=>"Controlla bene i campi"]);
     }
 
     private function checkErrors($data){
@@ -58,7 +56,7 @@ class RegController extends Controller {
         }
         //verifico username
         $username=Iscritto::where('username', $data['username'])->first();
-        if($username !== null) //vedi se è giusto
+        if($username !== null)
         {
             $errore=true;
         }
@@ -70,7 +68,7 @@ class RegController extends Controller {
         if(!preg_match('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/', $data['email'])){ 
             $errore=true;
         }
-        else{ //vedi se è giusto
+        else{
             $email=Iscritto::where('email', $data['email'])->first();
             if($email !== null)
             {
@@ -84,7 +82,6 @@ class RegController extends Controller {
         return $errore;
     }
 
-    //LE USA QUANDO FA LA FETCH NEL JAVASCRIPT
     public function checkUsername($query) {
         $trovato = Iscritto::where('username', $query)->first();
         if($trovato!=null){
@@ -94,7 +91,7 @@ class RegController extends Controller {
             return json_encode(false);
         }
     }
-    //LE USA QUANDO FA LA FETCH NEL JAVASCRIPT
+    
     public function checkEmail($query) {
         $trovato = Iscritto::where('email', $query)->first();
         if($trovato!=null){
@@ -104,9 +101,5 @@ class RegController extends Controller {
             return json_encode(false);
         }
     }
-
-    /*public function index() { //VEDI MEGLIO A COSA SERVE
-        return view('registrazione');
-    }*/
 }
 ?>

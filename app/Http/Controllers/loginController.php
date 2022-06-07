@@ -15,22 +15,18 @@ class loginController extends Controller {
             return redirect("account");
         }
         else {
-            return view('login')
-            ->with('csrf_token', csrf_token());
-            //->with("prova",$errore);//vedi
+            return view('login');
         }
     }
 
     public function checkLogin(){
-        //VEDI PER L'HASH DELLA PASSWORD
         $utente=Iscritto::where('username', request('username'))->where('password', request('password'))->first();
         if($utente != null){
             Session::put('username', $utente->username);
             return redirect('account');
         }
         else{
-            return redirect('login')//->with("Credenziali non valide",$errore)
-            ;//vedi
+            return view('login')->with(['errore'=>"Credenziali non valide"]);
         }
     }
 

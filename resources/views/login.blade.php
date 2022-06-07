@@ -34,6 +34,9 @@
                             @csrf
                             <p><label>Username<input type='text' name='username'></label></p>
                             <p><label>Password<input type='password' name='password'></label></p>
+                            @if(isset($errore))
+                            <p class = 'errore' >{{ $errore }}</p>
+                            @endif
                             <p><label>&nbsp<input type='submit' name='invio' value='entra'></label></p>
                         </form>
                         Non fai ancora parte del nostro team? <a href="registrazione">registrati</a>

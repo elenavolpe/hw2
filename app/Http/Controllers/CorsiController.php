@@ -16,7 +16,6 @@ class CorsiController extends Controller {
         }
         else {
             return redirect('login');
-            //->with('csrf_token', csrf_token()); //vedi questa parte del csrf forse non serve in questo caso
         }
     }
 
