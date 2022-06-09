@@ -20,8 +20,9 @@ class loginController extends Controller {
     }
 
     public function checkLogin(){
-        $utente=Iscritto::where('username', request('username'))->where('password', request('password'))->first();
-        if($utente != null){
+        $utente=Iscritto::where('username', request('username'))->first();
+        
+        if($utente != null && password_verify(request('password'), $utente->password)){
             Session::put('username', $utente->username);
             return redirect('account');
         }

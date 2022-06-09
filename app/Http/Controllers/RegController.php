@@ -25,7 +25,7 @@ class RegController extends Controller {
 
             $newIscritto =  Iscritto::create([
                 'username' => $request['username'],
-                'password' => $request['password'],
+                'password' => password_hash($request['password'],PASSWORD_BCRYPT),
                 'nome' => $request['nome'],
                 'cognome' => $request['cognome'],
                 'email' => $request['email'],
