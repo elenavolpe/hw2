@@ -1,5 +1,5 @@
+
 body{
-    /*background-image: url("background.webp");*/
     background-image: url("https://i.pinimg.com/236x/de/e6/da/dee6da39b926de9739c11409920a353b.jpg");
     font-size:30px;
 }
@@ -52,7 +52,7 @@ nav #nome{
 section{
     display:flex;
     justify-content: center;
-    height: 80%;
+    height: 500px;
     align-items: center;
     text-align: center;
 }

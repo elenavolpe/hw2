@@ -145,6 +145,34 @@ section{
     margin-bottom: 1px;
 }
 
+#modale{
+    position: absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;
+
+    background-color: rgba(0,0,0,0.9);
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modale img{
+    max-height: 90%;
+    max-width: 90%;
+}
+
+#modale.hidden{
+    display: none;
+}
+
+.noScroll{
+    overflow: hidden;
+}
+
 footer{
     display: flex;
     justify-content: space-around;

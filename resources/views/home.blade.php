@@ -65,7 +65,7 @@
                 <span id="forumnome">Forum</span>
                 <span class="spanhidden" id="forumspan">Puoi inserire commenti solo se hai fatto il login</span>
                 <form id="formforum">
-                    <input type="text" id="commento"/>
+                    <textarea type="text" id="commento"></textarea>
                     <input type="submit" value="scrivi">
                 </form>
                 <div id="commenti">

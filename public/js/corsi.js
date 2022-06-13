@@ -26,6 +26,7 @@ function OnJsonCorsi(json){
         const img=document.createElement('img');
         img.src=json[i].immagine;
         img.classList.add('imgcorso');
+        img.addEventListener('click',OnImgClicked);
 
         const giorno=document.createElement('span');
         giorno.textContent=json[i].giorno;
@@ -123,6 +124,24 @@ function togli_scheda(event){
     fetch("/togli_corso/" + encodeURIComponent(nome));
     add.src="images/add_no.svg";
     load_corsi();
+}
+
+function OnImgClicked(event){
+    const img=document.createElement('img');
+    img.src=event.currentTarget.src;
+    const modale=document.querySelector("#modale");
+    modale.appendChild(img);
+    modale.classList.remove('hidden');
+    modale.addEventListener('click',ChiudiModale);
+    document.body.classList.add('noScroll');
+    modale.style.top=window.pageYOffset + 'px';
+}
+
+function ChiudiModale(){
+    const modale=document.querySelector("#modale");
+    modale.classList.add('hidden');
+    modale.innerHTML='';
+    document.body.classList.remove('noScroll');
 }
 
 load_corsi();

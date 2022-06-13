@@ -1,11 +1,10 @@
-<html>
+<!doctype html>
     <head>
         <title>Stay Fit</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href='{{ asset( 'css/corsicss.css' ) }}' />
+        @yield('css')
         <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-        <script src='{{ asset( 'js/corsi.js' ) }}' defer="true"></script>
+        @yield('script')
     </head>
     <body>
         <article>
@@ -29,13 +28,7 @@
             </nav>
 
             <section>
-                Ecco qui l'elenco dei nostri corsi<br>
-                <div id="corsi">
-                    
-                </div>
-
-                <div id="modale" class="hidden">
-                </div>
+                @yield('content')
             </section>
 
             <footer>
