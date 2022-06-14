@@ -22,9 +22,9 @@ class HomeController extends Controller {
     public function carica_commento($commento){
         if(session('username')!=null){
             $newcomment = new Commento(['commento' => $commento,
-                                        'data' => now()]);
-            $user=Iscritto::where('username',session('username'))->first();
-            $user->commento()->save($newcomment);
+                                        'data' => now(),
+                                        'utente' => session('username')]);
+            $newcomment->save();
             $var=true;
         }
         else{

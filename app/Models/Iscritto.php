@@ -23,10 +23,10 @@ class Iscritto extends Model{
         'username', 'email', 'nome', 'cognome','eta', 'password', 'genere'
     ];
 
-    public function commento()
+    /*public function commento()
     {
         return $this->hasMany("App\Models\Commento","utente");
-    }
+    }*/
 
     public function scheda()
     { //tabella scheda N-N
